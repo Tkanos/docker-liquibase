@@ -2,12 +2,13 @@ docker-liquibase
 ================
 
 Docker image with Liquibase installation.
+Usable in a wercker pipeline
 
 ### Default behavior
 
 By default runs a simple container with Liquibase:
 
-```docker run -it --name liquibase sequenceiq/liquibase```
+```docker run -it --name liquibase tkanos/docker-liquibase```
 
 In the shell you can perform the usual `liquibase` operations.
 
@@ -24,7 +25,7 @@ to automatically perform diff and update operations.
 
 #### diff
 
-```
+```fsequan
 docker run -it \
 --name $LIQUIBASE_CONTAINER \
 --link $REFERENCE_DB_CONTAINER:db \
@@ -34,7 +35,7 @@ docker run -it \
 -e DB_PASS="$DB_PASS" \
 -e LIQUIBASE_INCLUSION_FILE="$LIQUIBASE_INCLUSION_FILE" \
 -v /$LIQUIBASE_CHANGELOGS:/changelogs \
-sequenceiq/docker-liquibase \
+tkanos/docker-liquibase \
 "diff"
 ```
 
@@ -65,7 +66,9 @@ docker run -it \
 --entrypoint="/scripts/liquibase_command.sh" \
 -v /$LIQUIBASE_CHANGELOGS:/changelogs \
 -e CHANGELOG_FILE=$LIQUIBASE_CHANGELOG_FILE \
-sequenceiq/docker-liquibase\
+
+
+tkanos/docker-liquibase\
 "update"
 ```
 
@@ -87,7 +90,7 @@ docker run -it \
 -e CHANGELOG_FILE=$LIQUIBASE_CHANGELOG_FILE \
 -e DB_SCHEMA_NAME=$SCHEMA_NAME \
 -e DIFF_TYPES=data \
-sequenceiq/docker-liquibase\
+tkanos/docker-liquibase\
 "generate"
 ```
 
