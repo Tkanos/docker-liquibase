@@ -1,13 +1,11 @@
-FROM java
-
-MAINTAINER SequenceIq
+FROM openjdk:8-jre-alpine
 
 # download liquibase
 # ADD http://sourceforge.net/projects/liquibase/files/Liquibase%20Core/liquibase-3.2.2-bin.tar.gz/download /tmp/liquibase-3.2.2-bin.tar.gz
 COPY lib/liquibase-3.2.2-bin.tar.gz /tmp/liquibase-3.2.2-bin.tar.gz
 
 # Create a directory for liquibase
-RUN mkdir /opt/liquibase
+RUN mkdir -p /opt/liquibase
 
 # Unpack the distribution
 RUN tar -xzf /tmp/liquibase-3.2.2-bin.tar.gz -C /opt/liquibase
@@ -30,4 +28,4 @@ VOLUME ["/changelogs"]
 
 WORKDIR /
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/sh"]
