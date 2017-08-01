@@ -27,5 +27,3 @@ RUN chmod -R +x /scripts
 VOLUME ["/changelogs"]
 
 WORKDIR /
-
-ENTRYPOINT ["/bin/sh"]
